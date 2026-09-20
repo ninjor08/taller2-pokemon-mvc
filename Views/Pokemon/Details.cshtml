@@ -1,0 +1,139 @@
+﻿@model PokemonMVC.Models.Pokemon
+
+@{
+    ViewData["Title"] = "Detalles de " + Model.Name;
+}
+
+<div class="container mt-4">
+
+    <div class="text-center mb-4">
+        <h1 class="text-capitalize">@Model.Name</h1>
+        <p class="text-muted">Pokémon #@Model.Id</p>
+    </div>
+
+    <div class="row justify-content-center">
+
+        <div class="col-md-6">
+
+            <div class="card shadow-sm">
+
+                <div class="card-body">
+
+                    <div id="pokemonCarousel"
+                         class="carousel slide"
+                         data-bs-ride="carousel">
+
+                        <div class="carousel-inner">
+
+                            @if (!string.IsNullOrEmpty(Model.Sprites.FrontDefault))
+                            {
+                                <div class="carousel-item active">
+                                    <img src="@Model.Sprites.FrontDefault"
+                                         class="d-block w-100"
+                                         style="height: 300px; object-fit: contain;"
+                                         alt="Vista frontal de @Model.Name">
+
+                                    <div class="text-center">
+                                        <p>Vista frontal</p>
+                                    </div>
+                                </div>
+                            }
+
+                            @if (!string.IsNullOrEmpty(Model.Sprites.BackDefault))
+                            {
+                                <div class="carousel-item">
+                                    <img src="@Model.Sprites.BackDefault"
+                                         class="d-block w-100"
+                                         style="height: 300px; object-fit: contain;"
+                                         alt="Vista posterior de @Model.Name">
+
+                                    <div class="text-center">
+                                        <p>Vista posterior</p>
+                                    </div>
+                                </div>
+                            }
+
+                            @if (!string.IsNullOrEmpty(Model.Sprites.FrontShiny))
+                            {
+                                <div class="carousel-item">
+                                    <img src="@Model.Sprites.FrontShiny"
+                                         class="d-block w-100"
+                                         style="height: 300px; object-fit: contain;"
+                                         alt="Vista frontal shiny de @Model.Name">
+
+                                    <div class="text-center">
+                                        <p>Vista frontal Shiny</p>
+                                    </div>
+                                </div>
+                            }
+
+                            @if (!string.IsNullOrEmpty(Model.Sprites.BackShiny))
+                            {
+                                <div class="carousel-item">
+                                    <img src="@Model.Sprites.BackShiny"
+                                         class="d-block w-100"
+                                         style="height: 300px; object-fit: contain;"
+                                         alt="Vista posterior shiny de @Model.Name">
+
+                                    <div class="text-center">
+                                        <p>Vista posterior Shiny</p>
+                                    </div>
+                                </div>
+                            }
+
+                        </div>
+
+                        <button class="carousel-control-prev"
+                                type="button"
+                                data-bs-target="#pokemonCarousel"
+                                data-bs-slide="prev">
+
+                            <span class="carousel-control-prev-icon"></span>
+                            <span class="visually-hidden">Anterior</span>
+                        </button>
+
+                        <button class="carousel-control-next"
+                                type="button"
+                                data-bs-target="#pokemonCarousel"
+                                data-bs-slide="next">
+
+                            <span class="carousel-control-next-icon"></span>
+                            <span class="visually-hidden">Siguiente</span>
+                        </button>
+
+                    </div>
+
+                    <hr />
+
+                    <div class="row text-center">
+
+                        <div class="col-6">
+                            <h5>Altura</h5>
+                            <p>@Model.Height</p>
+                        </div>
+
+                        <div class="col-6">
+                            <h5>Peso</h5>
+                            <p>@Model.Weight</p>
+                        </div>
+
+                    </div>
+
+                    <div class="text-center mt-3">
+                        <a asp-controller="Pokemon"
+                           asp-action="Index"
+                           class="btn btn-primary">
+                            Volver a la lista
+                        </a>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+

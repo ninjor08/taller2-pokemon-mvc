@@ -1,0 +1,127 @@
+﻿@model List<PokemonMVC.Models.PokemonListItem>
+
+@{
+    ViewData["Title"] = "Pokémon";
+
+    int currentPage = ViewBag.CurrentPage;
+    int pageSize = ViewBag.PageSize;
+    int totalPages = ViewBag.TotalPages;
+}
+
+<div class="container mt-4">
+
+    <div class="text-center mb-4">
+        <h1>Lista de Pokémon</h1>
+        <p>Explora los Pokémon disponibles en PokeAPI</p>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-md-4">
+            <form method="get" asp-controller="Pokemon" asp-action="Index">
+                <label for="pageSize" class="form-label">
+                    Pokémon por página:
+                </label>
+
+                <div class="input-group">
+                    <input type="number"
+                           id="pageSize"
+                           name="pageSize"
+                           value="@pageSize"
+                           min="1"
+                           max="50"
+                           class="form-control" />
+
+                    <button type="submit" class="btn btn-primary">
+                        Aplicar
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="row">
+        @foreach (var pokemon in Model)
+        {
+            var parts = pokemon.Url.TrimEnd('/').Split('/');
+            var id = parts[parts.Length - 1];
+
+            var imageUrl =
+                $"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{id}.png";
+
+            <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
+                <div class="card h-100 text-center shadow-sm">
+
+                    <img src="@imageUrl"
+                         class="card-img-top p-3"
+                         alt="@pokemon.Name"
+                         style="height: 180px; object-fit: contain;" />
+
+                    <div class="card-body">
+                        <h5 class="card-title text-capitalize">
+                            @pokemon.Name
+                        </h5>
+
+                        <p class="text-muted">
+                            #@id
+                        </p>
+
+                        <a asp-controller="Pokemon"
+                           asp-action="Details"
+                           asp-route-id="@id"
+                           class="btn btn-outline-primary">
+                            Ver detalles
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        }
+    </div>
+
+    @if (totalPages > 1)
+    {
+        int startPage = Math.Max(1, currentPage - 2);
+        int endPage = Math.Min(totalPages, currentPage + 2);
+
+        <nav class="mt-4">
+            <ul class="pagination justify-content-center">
+
+                <li class="page-item @(currentPage == 1 ? "disabled" : "")">
+                    <a class="page-link"
+                       asp-controller="Pokemon"
+                       asp-action="Index"
+                       asp-route-page="@(currentPage - 1)"
+                       asp-route-pageSize="@pageSize">
+                        Anterior
+                    </a>
+                </li>
+
+                @for (int i = startPage; i <= endPage; i++)
+                {
+                    <li class="page-item @(i == currentPage ? "active" : "")">
+                        <a class="page-link"
+                           asp-controller="Pokemon"
+                           asp-action="Index"
+                           asp-route-page="@i"
+                           asp-route-pageSize="@pageSize">
+                            @i
+                        </a>
+                    </li>
+                }
+
+                <li class="page-item @(currentPage == totalPages ? "disabled" : "")">
+                    <a class="page-link"
+                       asp-controller="Pokemon"
+                       asp-action="Index"
+                       asp-route-page="@(currentPage + 1)"
+                       asp-route-pageSize="@pageSize">
+                        Siguiente
+                    </a>
+                </li>
+
+            </ul>
+        </nav>
+    }
+
+</div>
+

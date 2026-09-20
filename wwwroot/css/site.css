@@ -1,0 +1,176 @@
+/* Configuración general */
+html {
+    font-size: 14px;
+    position: relative;
+    min-height: 100%;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+body {
+    margin-bottom: 70px;
+    background-color: #f5f7fa;
+    color: #212529;
+}
+
+
+/* Barra de navegación */
+.navbar {
+    background-color: #ffffff !important;
+    border-bottom: 3px solid #ffc107 !important;
+}
+
+.navbar-brand {
+    font-weight: bold;
+    color: #dc3545 !important;
+    font-size: 1.4rem;
+}
+
+.navbar .nav-link {
+    font-weight: 500;
+    transition: 0.2s;
+}
+
+    .navbar .nav-link:hover {
+        color: #dc3545 !important;
+    }
+
+
+/* Títulos */
+h1 {
+    font-weight: 700;
+}
+
+.text-muted {
+    color: #6c757d !important;
+}
+
+
+/* Formulario para cantidad por página */
+.form-label {
+    font-weight: 600;
+}
+
+.form-control {
+    border-radius: 8px;
+}
+
+    .form-control:focus {
+        border-color: #ffc107;
+        box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.25);
+    }
+
+
+/* Tarjetas de Pokémon */
+.card {
+    border: none;
+    border-radius: 14px;
+    background-color: #ffffff;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12) !important;
+    }
+
+    .card img {
+        transition: transform 0.2s;
+    }
+
+    .card:hover img {
+        transform: scale(1.08);
+    }
+
+.card-title {
+    font-weight: 600;
+}
+
+
+/* Botones */
+.btn-primary {
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+    border-radius: 8px;
+}
+
+    .btn-primary:hover {
+        background-color: #0b5ed7;
+        border-color: #0a58ca;
+    }
+
+.btn-outline-primary {
+    border-radius: 8px;
+    font-weight: 500;
+}
+
+
+/* Paginación */
+.pagination {
+    margin-top: 25px;
+}
+
+.page-link {
+    color: #0d6efd;
+}
+
+.page-item.active .page-link {
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+}
+
+.page-link:focus {
+    box-shadow: none;
+}
+
+
+/* Carrusel de detalles */
+.carousel {
+    background-color: #ffffff;
+    border-radius: 12px;
+}
+
+.carousel-item img {
+    max-width: 100%;
+    margin: auto;
+}
+
+
+/* Pie de página */
+.footer {
+    background-color: #ffffff;
+    line-height: 60px;
+}
+
+
+/* Accesibilidad de controles */
+.btn:focus,
+.btn:active:focus,
+.btn-link.nav-link:focus,
+.form-control:focus,
+.form-check-input:focus {
+    outline: none;
+}
+
+
+/* Adaptación para pantallas pequeñas */
+@media (max-width: 767px) {
+
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    .card {
+        margin-bottom: 15px;
+    }
+
+    .navbar-brand {
+        font-size: 1.2rem;
+    }
+}
+
+
